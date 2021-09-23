@@ -1,4 +1,4 @@
-package com.sarbesh.webapp;
+package com.sarbesh.gatewayservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
