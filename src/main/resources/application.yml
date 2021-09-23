@@ -1,0 +1,14 @@
+---
+spring:
+    application:
+        name: Gateway-Service
+    cloud:
+        gateway:
+            routes:
+            - id: service
+              uri: lb://service
+              predicates:
+              - Path=/services/1/**,/service/2/**
+
+server:
+    port: ${PORT:8080}
