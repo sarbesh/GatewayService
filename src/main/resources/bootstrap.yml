@@ -2,12 +2,18 @@
 spring:
     application:
         name: Gateway-Service
-    profiles:
-      active: local
     cloud:
       config:
-        uri: ${CONFIG_SERVER_URL:https://user:7c97f478-7471-48a2-8304-93b14527a1c4@sarbesh-config-server.herokuapp.com}
-        enabled: true
+        discovery:
+          enabled: true
+          service-id: CONFIG-SERVER
+eureka:
+  client:
+    region: default
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://user:password@localhost:8761}/eureka
 
 server:
     port: ${PORT:8080}
