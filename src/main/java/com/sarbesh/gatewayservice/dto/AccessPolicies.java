@@ -1,29 +1,45 @@
 package com.sarbesh.gatewayservice.dto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
 import java.util.List;
 
-public class AccessPolicies {
-    private List<AccessPolicy> accessPolicyList;
+@Configuration
+@ConfigurationProperties
+public class AccessPolicies implements InitializingBean {
 
-    public List<AccessPolicy> getAccessPolicyList() {
-        return accessPolicyList;
+    private static final Logger LOGGER = LoggerFactory.getLogger(AccessPolicies.class);
+
+    private List<AccessPolicy> accessPolicies;
+
+    public List<AccessPolicy> getAccessPolicies() {
+        return accessPolicies;
     }
 
-    public void setAccessPolicyList(List<AccessPolicy> accessPolicyList) {
-        this.accessPolicyList = accessPolicyList;
+    public void setAccessPolicies(List<AccessPolicy> accessPolicies) {
+        this.accessPolicies = accessPolicies;
     }
 
     @Override
     public String toString() {
         return "AccessPolicies{" +
-                "accessPolicyList=" + accessPolicyList +
+                "accessPolicyList=" + accessPolicies +
                 '}';
     }
 
     public AccessPolicies() {
     }
 
-    public AccessPolicies(List<AccessPolicy> accessPolicyList) {
-        this.accessPolicyList = accessPolicyList;
+    public AccessPolicies(List<AccessPolicy> accessPolicies) {
+        this.accessPolicies = accessPolicies;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        LOGGER.info("Access policies loaded: {} ",accessPolicies);
     }
 }
