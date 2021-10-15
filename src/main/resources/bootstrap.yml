@@ -1,19 +1,12 @@
 ---
 spring:
-    application:
-        name: Gateway-Service
-    cloud:
-      config:
-        discovery:
-          enabled: true
-          service-id: CONFIG-SERVER
-eureka:
-  client:
-    region: default
-    fetch-registry: true
-    register-with-eureka: true
-    serviceUrl:
-      defaultZone: ${EUREKA_URL:http://user:password@localhost:8761}/eureka
-
+  application:
+    name: Gateway-Service
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://user:password@localhost:8888}
+      enabled: true
+  main:
+    webApplicationType: reactive
 server:
     port: ${PORT:8080}
